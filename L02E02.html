@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<meta charset='UTF-8' />
+	<head>
+		<title>JavaScript roots of a quadratic equation</title>
+		<body>
+			This program computes roots of a quadratic equation when it ?
+		</body>
+	</head>
+
+<script type="text/javascript">
+let a, b, c;
+while ( (typeof a) != "number")
+	a = parseFloat(prompt("Enter the first coefficient: ") );
+while ( (typeof b) != "number")
+	b = parseFloat(prompt("Enter the second coefficient: ") );
+while ( (typeof c) != "number")
+	c = parseFloat(prompt("Enter the free term: ") );
+
+let delta = b * b - 4 * a * c;
+let root1 = (-b + Math.sqrt(delta)) / (2 * a);
+let root2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+if (root1 === root2)
+	root2 = NaN;
+
+if (root1 === root1 && root2 === root2) // test if NaN: NaN !== NaN always
+	console.log("The roots are " + root1 + " and " + root2);
+else if (root1 === root1)
+	console.log("The root is " + root1);
+else if (root2 === root2)
+	console.log("The root is " + root2);
+else console.log("Both roots are complex");
+</script>
+</html>

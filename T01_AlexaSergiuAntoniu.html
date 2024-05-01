@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<meta charset='UTF-8'>
+	<p>
+		num1: <input id = "num1", oninput = "toNumber('num1')"></input> <br></br>
+		num2: <input id = "num2", oninput = "toNumber('num2')"></input> <br></br>
+		<button onclick="calculate()">Calculare</button>
+	</p>
+	<p id = "Result">
+	</p>
+</meta>
+</html>
+
+<script type="text/javascript">
+function calculate() {
+	let num1, num2;
+	num1 = document.getElementById("num1").value;
+	num2 = document.getElementById("num2").value;
+	
+	document.getElementById("Result").innerHTML = "Rezultatul înmulțirii: " + (num1 * num2) + "<br></br>\n";
+	document.getElementById("Result").innerHTML += "Rezultatul împărțirii: " + (num1 / num2);
+}
+
+function toNumber(id) {
+	let box = document.getElementById(id).value;
+	if (box[0] === '0')
+		box = box.substring(1, box.length);
+	if (!(box[box.length - 1] >= '0' && box[box.length - 1] <= '9')) {
+		box = box.substring(0, box.length - 1);
+	}
+	document.getElementById(id).value = box;
+}
+</script>

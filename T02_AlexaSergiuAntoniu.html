@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<meta charset='UTF-8' />
+<title>Javascript Armstrong numbers</title>
+	<p>
+		Limita de jos: <input id = "lLim", oninput = "toNumber('lLim')" /> <br /> <br />
+		Limita de sus: <input id = "uLim", oninput = "toNumber('uLim')" /> <br /> <br />
+		<button onclick = "toNumber_failsafe('lLim'), toNumber_failsafe('uLim'), calculate()">Calculare</button>
+	</p>
+	<p id = "Result"> </p>
+
+<script type="text/javascript">
+function calculate() {
+	let lLim, uLim, printedNumbers = 0;
+	lLim = document.getElementById("lLim").value;
+	uLim = document.getElementById("uLim").value;
+	
+	for (let i = lLim; i <= uLim; i++) {
+		let numToTest = i;
+		let sumDigits = 0;
+		
+		while (numToTest) {
+			let digit = numToTest % 10;
+			numToTest = Math.trunc(numToTest / 10);
+			sumDigits += digit ** 3;
+		}
+		
+		if (sumDigits == i) {
+			if (!printedNumbers)
+				document.getElementById("Result").innerHTML = "Numere Armstrong în intervalul dat: " + i;
+			else document.getElementById("Result").innerHTML += ", " + i;
+			printedNumbers++;
+		}
+	}
+}
+
+function toNumber_failsafe(id) {
+	let box = document.getElementById(id).value;
+	for (let i = 0; i < box.length; i++) {
+		if (!(box[i] >= '0' && box[i] <= '9')) { //Permite doar introducerea cifrelor
+			if (i > 0)
+				box = box.substring(0, i) + box.substring(i + 1, box.length);
+			else box = box.substring(i + 1, box.length);
+			i--;
+		}
+	}
+	if (!box)
+		box = 0;
+	document.getElementById(id).value = box;
+}
+
+function toNumber(id) {
+	let box = document.getElementById(id).value;
+	if (!(box[box.length - 1] >= '0' && box[box.length - 1] <= '9')) //Permite doar introducerea cifrelor
+		box = box.substring(0, box.length - 1);
+	if (box[0] === '0' && box.length > 1) //Nu permite începerea unui număr cu 0
+		box = box.substring(1, box.length);
+	document.getElementById(id).value = box;
+}
+</script>
